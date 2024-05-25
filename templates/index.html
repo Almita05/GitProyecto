@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f8ff;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], select {
+            width: calc(100% - 22px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script>
+        function filterMunicipios() {
+            var cveddr = document.getElementById("cveddr");
+            var cvempio = document.getElementById("cvempio");
+            var selectedRegion = cveddr.options[cveddr.selectedIndex].value;
+            var municipios = [];
+
+            if (selectedRegion == "111") { // Huauchinango
+                municipios = [
+                    "Ahuazotepec",
+                    "Chiconcuautla",
+                    "Honey",
+                    "Francisco Z. Mena",
+                    "Hermenegildo Galeana",
+                    "Huauchinango",
+                    "Jalpan",
+                    "Jopala",
+                    "Juan Galindo",
+                    "Naupan",
+                    "Pahuatlán",
+                    "Pantepec",
+                    "San Felipe Tepatlán",
+                    "Tlacuilotepec",
+                    "Tlaola",
+                    "Tlapacoya",
+                    "Tlaxco",
+                    "Venustiano Carranza",
+                    "Xicotepec",
+                    "Zihuateutla"
+                ];
+            } else if (selectedRegion == "112") { // Zacatlan
+                municipios = [
+                    "Aquixtla",
+                    "Cuautempan",
+                    "Chignahuapan",
+                    "Chignahuapan",
+                    "Ixtacamaxtitlán",
+                    "Tetela de Ocampo",
+                    "Zacatlán"
+                ];
+            } else if (selectedRegion == "113") { // teziutlan
+                municipios = [
+                    "Acateno",
+                    "Atempan",
+                    "Ayotoxco de Guerrero",
+                    "Caxhuacan",
+                    "Cuetzalan del Progreso",
+                    "Chignautla",
+                    "Huehuetla",
+                    "Hueytamalco",
+                    "Hueytlalpan",
+                    "Huitzilan de Serdán",
+                    "Atlequizayan",
+                    "Ixtepec",
+                    "Jonotla",
+                    "Nauzontla",
+                    "Olintla",
+                    "Teteles de Avila Castillo",
+                    "Teziutlán",
+                    "Tlatlauquitepec",
+                    "Tuzamapan de Galeana",
+                    "Xiutetelco",
+                    "Xochiapulco",
+                    "Xochitlán de Vicente Suárez",
+                    "Yaonáhuac",
+                    "Zacapoaxtla",
+                    "Zapotitlán de Méndez",
+                    "Zaragoza",
+                    "Zautla",
+                    "Zongozotla",
+                    "Zoquiapan"
+                ];
+            } else if (selectedRegion == "114") { // libres
+                municipios = [
+                    "Aljojuca",
+                    "Atzitzintla",
+                    "Cuyoaco",
+                    "Chalchicomula de Sesma",
+                    "Chichiquila",
+                    "Chilchotla",
+                    "Esperanza",
+                    "Guadalupe Victoria",
+                    "Lafragua",
+                    "Libres",
+                    "Mazapiltepec de Juárez",
+                    "Cañada Morelos",
+                    "Nopalucan",
+                    "Ocotepec",
+                    "Oriental",
+                    "Quimixtlán",
+                    "Rafael Lara Grajales",
+                    "San José Chiapa",
+                    "San Juan Atenco",
+                    "San Nicolás Buenos Aires",
+                    "San Salvador El Seco",
+                    "Soltepec",
+                    "Tepeyahualco",
+                    "Tlachichuca"
+                ];
+            } else if (selectedRegion == "115") { // Cholula
+                municipios = [
+                    "Acajete",
+                    "Amozoc",
+                    "Atlixco",
+                    "Calpan",
+                    "Coronango",
+                    "Cuautinchán",
+                    "Cuautlancingo",
+                    "Chiautzingo",
+                    "Domingo Arenas",
+                    "Huaquechula",
+                    "Huejotzingo",
+                    "Juan C. Bonilla",
+                    "Nealtican",
+                    "Ocoyucan",
+                    "Puebla",
+                    "San Andrés Cholula",
+                    "San Felipe Teotlalcingo",
+                    "San Gregorio Atzompa",
+                    "San Jerónimo Tecuanipan",
+                    "San Martín Texmelucan",
+                    "San Matías Tlalancaleca",
+                    "San Miguel Xoxtla",
+                    "San Nicolás de Los Ranchos",
+                    "San Pedro Cholula",
+                    "San Salvador El Verde",
+                    "Santa Isabel Cholula",
+                    "Tecali de Herrera",
+                    "Tepatlaxco de Hidalgo",
+                    "Tepeaca",
+                    "Tianguismanalco",
+                    "Tlahuapan",
+                    "Tlaltenango",
+                    "Tochimilco",
+                    "Tzicatlacoyan"
+                ];
+            } else if (selectedRegion == "116") { // Iucar de Matamoros
+                municipios = [
+                    "Acatlán",
+                    "Coatzingo",
+                    "Chiautla",
+                    "Chietla",
+                    "Chinantla",
+                    "Huehuetlán El Chico",
+                    "Izúcar de Matamoros",
+                    "Petlalcingo",
+                    "San Martín Totoltepec",
+                    "Tecomatlán",
+                    "Tepeojuma",
+                    "Tepexco",
+                    "Tlapanalá"
+                ];
+            } else if (selectedRegion == "117") { // tecamachalco
+                municipios = [
+                    "Acatzingo",
+                    "Atexcal",
+                    "Atoyatempan",
+                    "Coyotepec",
+                    "Cuapiaxtla de Madero",
+                    "Chigmecatitlán",
+                    "General Felipe Ángeles",
+                    "Huatlatlauca",
+                    "Huitziltepec",
+                    "Ixcaquixtla",
+                    "Juan N. Méndez",
+                    "La Magdalena Tlatlauquitepec",
+                    "Mixtla",
+                    "Molcaxac",
+                    "Palmar de Bravo",
+                    "QUECHOLAC",
+                    "Los Reyes de Juárez",
+                    "San Juan Atzompa",
+                    "San Salvador Huixcolotla",
+                    "Santa Catarina Tlaltempan",
+                    "Santa Inés Ahuatempan",
+                    "Santo Tomás Hueyotlipan",
+                    "Tecamachalco",
+                    "Tepanco de López",
+                    "Tepexi de Rodríguez",
+                    "Tepeyahualco de Cuauhtémoc",
+                    "Tlacotepec de Benito Juárez",
+                    "Tlanepantla",
+                    "Tochtepec",
+                    "Xochitlán Todos Santos",
+                    "Yehualtepec",
+                    "Zacapala"
+                ];
+            } else if (selectedRegion == "118") { // Tehuacan
+                municipios = [
+                    "Ajalpan",
+                    "Altepexi",
+                    "Coxcatlán",
+                    "Santiago Miahuatlán",
+                    "Tehuacán"
+                ];
+            }
+
+            cvempio.options.length = 0;
+            for (var i = 0; i < municipios.length; i++) {
+                var option = document.createElement("option");
+                option.value = i + 1;
+                option.text = municipios[i];
+                cvempio.add(option);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1>PRECIO DE LA LECHE EN BASE A LA PRODUCCIÓN GANADERA EN EL ESTADO DE PUEBLA</h1>
+    <form action="/" method="post">
+
+        <label for="anio">Año:</label>
+        <select name="anio" id="anio">
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+        </select>
+
+        <label for="cveddr">Cveddr (Region):</label>
+        <select name="cveddr" id="cveddr" onchange="filterMunicipios()">
+            <option value="111">Huachinango</option>
+            <option value="112">Zacatlan</option>
+            <option value="113">Teziutlan</option>
+            <option value="114">Libres</option>
+            <option value="115">Cholula</option>
+            <option value="116">Izucar de matamoros</option>
+            <option value="117">Tecamachalco</option>
+            <option value="118">Tehuacan</option>
+        </select>
+
+        <label for="cvempio">Cvempio (Municipio):</label>
+        <select name="cvempio" id="cvempio">
+        </select>
+
+        <label for="cveespecie">Cveespecie:</label>
+        <select name="cveespecie" id="cveespecie">
+            <option value="4">Bovino</option>
+            <option value="6">Caprino</option>
+        </select>
+
+        <label for="volumen">Volumen:</label>
+        <input type="text" name="volumen" id="volumen">
+
+        <label for="mes">Mes:</label>
+        <select name="mes" id="mes">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8">Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+
+        <label for="consecutivo">Consecutivo:</label>
+        <select name="consecutivo" id="consecutivo">
+            <option value="1">SANTA CLARA, PASTEURIZADA, ENTERA, BOTE DE 1.89 LT</option>
+            <option value="2">LALA, ULTRAPASTEURIZADA, DESLACTOSADA, BOTE DE 1 LT</option>
+            <option value="3">LECHE Y PAN, ULTRAPASTEURIZADA, 12 BOTES DE 1 LT</option>
+            <option value="4">MP, ULTRAPASTEURIZADA, ENTERA, BOTE DE 1 LT</option>
+            <option value="5">LALA, PASTEURIZADA, ENTERA, BOTE DE 1.86 LT</option>
+            <option value="6">ALPURA 2000, ULTRAPASTEURIZADA, ENTERA, BOTE DE 1 LT</option>
+            <option value="7">SANTA CLARA, ULTRAPASTEURIZADA, ENTERA, BOTE DE 1 LT</option>
+            <option value="8">LALA, ULTRAPASTEURIZADA, ENTERA, 12 BOTES DE 1 LT</option>
+            <option value="9">NUTRI LECHE, RECONSTITUIDA, BOTE DE 1 LT</option>
+            <option value="10">ALPURA, PASTEURIZADA, CLASICA, ENTERA, BOTE DE 1 LT</option>
+            <option value="11">HERSHEY´S, SABORIZADA, SABOR CHOCOLATE, BOTE DE 236 ML</option>
+            <option value="12">BORDEN, ULTRAPASTEURIZADA, ENTERA, BOTE DE 1 LT</option>
+            <option value="13">ALPURA, ULTRAPASTEURIZADA, 2000, SEMI, BOTE DE 1 LT</option>
+            <option value="14">SANTA CLARA, ULTRAPASTEURIZADA, ENTERA, BOTE DE 1 LT</option>
+            <option value="15">ALPURA, ULTRAPASTEURIZADA, 2000, SEMI, BOTE DE 1 LT</option>
+        </select>
+        
+        <input type="submit" value="Predict">
+        
+    </form>
+    {% if prediction_text %}
+    <h2>{{ prediction_text }}</h2>
+    {% endif %}
+</body>
+
+</html>
